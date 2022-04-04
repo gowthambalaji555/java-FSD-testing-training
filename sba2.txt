@@ -1,0 +1,119 @@
+1.import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+class Pbook{
+private String name,author;
+private Integer cpy,year;
+public Pbook(String name,String author,Integer cpy, Integer year) {
+this.name=name;
+this.author=author;
+this.cpy=cpy;
+this.year=year;
+}
+public Integer getYear() {
+return year;
+}
+@Override
+public String toString() {
+return " date="+year+", name="+name+", author="+author+",
+cpy="+cpy+"\n";
+}
+}
+public class SBA2_1 {
+public static void main(String[] args) {
+ArrayList<Pbook> bk=new ArrayList<Pbook>();
+bk.add(new Pbook("wings of fire","APJ ABDUL kALAM",400,2000));
+bk.add(new Pbook("an i deniel","ashlin",120,1997));
+bk.add(new Pbook("Tw States","Chethan Bhagat",500,2003));
+bk.add(new Pbook("The Alchemist","Paulo Coelho",1500,1988));
+System.out.println(" beforesorting:\n"+bk);
+bk.sort((source,target) -> {return (source.getYear() -
+target.getYear());});
+bk.sort(Comparator.comparingInt(Pbook::getYear));
+System.out.println(bk);
+}
+}
+
+
+2.import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.FileReader;
+import java.io.*;
+public class SBA2_2 {
+public static void main(String[] args) {
+try
+{
+File file=new File("SBA2_2.txt");
+if(!file.exists())
+{
+file.createNewFile();
+}
+//content for file
+PrintWriter pw= new PrintWriter(file);
+pw.println("'this is the content'");
+pw.println("file exists");
+pw.close();
+System.out.println("file created and adding content = Done");
+System.out.println();
+System.out.println("****Reading from the file****");
+try{
+FileReader fr = new FileReader("SBA2_2.txt"
+);
+int i;
+while ((i = fr.read()) != -1)
+System.out.print((char)i);
+}
+catch (IOException e) {
+e.printStackTrace();
+}
+}
+catch (IOException e) {
+e.printStackTrace();
+}
+}
+}
+
+
+3.import java.io.*;
+public class SBA2_3 {
+public static void main(String[] args) {
+File f=new File("SBA2_2.txt");
+if(f.exists())
+{
+System.out.println("File Name :"+f.getName());
+System.out.println("File Path :"+f.getAbsolutePath());
+System.out.println("File Free Space :"+f.getFreeSpace());
+System.out.println("File Writable :"+f.canRead());
+System.out.println("File Readable :"+f.canWrite());
+System.out.println("File useSpace :"+f.getUsableSpace());
+System.out.println("File TotalSpace :"+f.getTotalSpace());
+}
+else
+{
+System.out.println("file doesn exists");
+}
+}
+}
+
+
+4.import java.io.*;
+import java.io.FileReader;
+public class SBA2_4 {
+public static void main(String[] args) throws IOException
+{
+try {
+FileReader file=new FileReader("SBA2_2.txt");
+int data=file.read();
+while(data!=-1) {
+System.out.print((char)data);
+data=file.read();
+}
+file.close();
+}
+catch (FileNotFoundException e)
+{
+e.printStackTrace();
+}
+}
+}
